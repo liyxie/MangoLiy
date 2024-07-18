@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="后台源码" />
+        <module name="back" />
         <module name="mango" />
       </profile>
     </annotationProcessing>
