@@ -1,0 +1,30 @@
+<view class="htmleaf-container" style="background:white;display:{{isLoading?'none':'block'}};height:100%;">
+
+  <view class="spinner-box" style="margin:0 auto;">
+    <view class="pulse-container" style="margin-top:500rpx;">
+      <view class="pulse-bubble pulse-bubble-1"></view>
+      <view class="pulse-bubble pulse-bubble-2"></view>
+      <view class="pulse-bubble pulse-bubble-3"></view>
+    </view>
+  </view>
+
+</view>
+
+<view style="display:{{isLoading?'block':'none'}}">
+
+
+  <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+  <view class='container' style='margin-top: {{height*2+20}}px'>
+    <view class="main">
+      <view class="avatar">
+        <image src="https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/images/other/logo.png" mode="widthFix" />
+      </view>
+      <view class="intro">
+        <view>
+          如果在使用过程中遇到任何问题,或者对小程序有任何建议,请在第一时间联系
+          <text selectable="{{true}}" style="color:#3cc" bindtap="call">13924421275</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

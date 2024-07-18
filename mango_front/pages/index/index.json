@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "SearchBar": "/components/searchBox/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "mp-html": "/components/mp-html/index"
+  },
+     "backgroundTextStyle":"dark"
+}

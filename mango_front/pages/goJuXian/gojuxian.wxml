@@ -1,0 +1,22 @@
+<!--pages/goJuXian/gojuxian.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view style="margin-top: {{height*2+20}}px;"></view>
+<view class="cu-list grid col-{{3}} {{gridBorder?'':'no-border'}}">
+    <view class="cu-item" bind:tap="toDianl">
+      <view class="cuIcon-light text-orange">
+      </view>
+      <text>宿舍电量</text>
+    </view>
+
+    <view class="cu-item"  bind:tap="tofanyi">
+      <view class="cuIcon-new text-orange">
+      </view>
+      <text>语言翻译</text>
+    </view>
+
+    <!-- <view class="cu-item">
+      <view class="cuIcon-cardboardfill text-orange">
+      </view>
+      <text>宿舍电量</text>
+    </view> -->
+  </view>

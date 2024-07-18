@@ -1,0 +1,89 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='container' style='margin-top: {{height*2+30}}px;margin-left: 10px;margin-right: 10px;margin-bottom: 10px'>
+  <view class="top_title">内容描述</view>
+  <view class="intro">
+    <textarea style="width:100%;margin-top:20rpx;" maxlength="10000" bindinput='input_intro' placeholder="请输入内容描述（最多10000字）"></textarea>
+  </view>
+  <view class="image_content">
+    <view class='image' wx:for="{{img_url}}" wx:key="index">
+      <image class="moment_img" src="{{item}}" mode="aspectFill"></image>
+      <view class="iconfont icon-cha cha" id="{{item}}" bindtap="deleteImg"></view>
+    </view>
+    <view class='image' style='display:{{hideAdd?"none":"block"}}'>
+      <image bindtap="chooseimage" class="moment_img" src='https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/images/other/add.png'></image>
+    </view>
+  </view>
+</view>
+<!-- <view class="bottom">
+  <view class="message_user">
+    <view class="phone_title">联系方式：</view>
+    <input class="phone" bindtap="editInfo" type="number" disabled="disabled" bindinput='input_phone' placeholder="请输入您的手机号" value = '{{userInfo.phone}}' maxlength="11"></input>
+  </view>
+</view> -->
+
+<view class="bottom_item">
+  <view class="message_category">
+    <view class="phone_title">请选择分类：</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+      <view class="phone">
+        {{(picker[index]===-1)?"请选择分类":"当前选择-"}}{{picker[index]}}
+      </view>
+    </picker>
+  </view>
+</view>
+
+<view class="bottom_item" wx:if="{{index == 0}}">
+  <view class="message_user">
+    <view class="phone_title">拾遗地点：</view>
+    <input class="phone" type="number"  bindinput='input_level'   placeholder="请输入地点 "></input>
+  </view>
+</view>
+<view class="bottom_item" wx:if="{{index == 1}}">
+  <view class="message_user">
+    <view class="phone_title">丢失地点：</view>
+    <input class="phone" type="text"  bindtap="editInfo" bindinput='input_level'  placeholder="请输入地点" ></input>
+  </view>
+</view>
+<van-cell-group style="font-size: 30rpx;">
+  <van-field
+    value="{{ input_phone }}"
+    label="联系方式："
+    placeholder="请输入手机号"
+    border="{{ false }}"
+    error="{{ phoneLength || phoneFormat }}"
+    error-message="{{ phoneError }}"
+    bindinput='input_phone'
+    class="my1"
+    style="font-size: 30rpx; color: #000000;"
+  />
+</van-cell-group>
+
+
+<!-- <view class="bottom_item">
+  <view class="message_user">
+    <view class="phone_title">专业说明：</view>
+    <input class="phone"  bindtap="editInfo" placeholder="请输入您的专业" disabled="disabled" value='{{userInfo.major}}' bindinput='input_major' maxlength="13"></input>
+  </view>
+</view>
+<view class="bottom_item">
+  <view class="message_category">
+    <view class="phone_title">请选择分类：</view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="phone">
+        {{(array[category_index]==null)?"请选择分类":"当前选择-"}}{{array[category_index]}}
+      </view>
+    </picker>
+  </view>
+</view> -->
+<view class="bottom">
+  <view class="message_user">
+    <view class="phone_title">是否匿名：</view>
+    <switch bindchange="switch1Change" />
+  </view>
+</view>
+
+<view class="submit">
+  <view bindtap="submit" class="main">
+    <text>确定发布</text>
+  </view>
+</view>

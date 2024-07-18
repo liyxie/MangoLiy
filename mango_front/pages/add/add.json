@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/index/index",
+    "pages/category/category",
+    "pages/search/search",
+    "pages/message_detail/message_detail",
+    "pages/message_detail_1/message_detail",
+    "pages/add_detail_1/index/index",
+    "pages/add/add",
+    "pages/agreement/agreement",
+    "pages/add_detail/add_detail",
+    "pages/add_detail_1/add_detail",
+    "pages/shop/shop",
+    "pages/shop_detail/shop_detail",
+    "pages/me/me",
+    "pages/me_fabu/me_fabu",
+    "pages/me_canyu/me_canyu",
+    "pages/me_shoucang/me_shoucang",
+    "pages/me_xiaoxi/me_xiaoxi",
+    "pages/me_about/me_about",
+    "pages/user/user",
+    "pages/postpage/postpage",
+    "pages/postpage_category/postpage",
+    "components/searchBar/searchBar",
+    "pages/admin/admin",
+    "pages/admin/a_user/a_user",
+    "pages/userDetailPage/userDetailPage",
+    "pages/proclamation/proclamation",
+    "pages/homeImg/homeImg",
+    "pages/manageShop/mangageShop",
+    "pages/manageShopDetail/manageShopDetail",
+    "pages/driftBottle/drift_bottle",
+    "pages/user_chat/user_chat",
+    "pages/score/score",
+    "pages/score/create/create",
+    "pages/score/themem/themem",
+    "pages/admin/admin_message/admin_message",
+    "pages/admin/admin_score/admin_score",
+    "pages/admin/admin_driftBottle/admin_driftBottle",
+    "pages/goJuXian/gojuxian",
+    "pages/goJuXian/sushedianliang/sushedianliang",
+    "pages/goJuXian/fanyi/fanyi"
+
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序定位"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "/images/tabBar/index.png",
+        "selectedIconPath": "/images/tabBar/index_active.png"
+      },
+      {
+        "pagePath": "pages/postpage/postpage",
+        "text": "校园墙",
+        "iconPath": "/images/tabBar/message.png",
+        "selectedIconPath": "/images/tabBar/message_active.png"
+      },
+      {
+        "pagePath": "pages/add/add",
+        "text": "发布",
+        "iconPath": "/images/tabBar/add.png",
+        "selectedIconPath": "/images/tabBar/add_active.png"
+      },
+
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "/images/tabBar/mine.png",
+        "selectedIconPath": "/images/tabBar/mine_active.png"
+      }
+    ]
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "requiredPrivateInfos": [
+    "chooseLocation"
+  ],
+  "sitemapLocation": "sitemap.json",
+  "servicemarket":true
+}

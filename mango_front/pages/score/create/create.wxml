@@ -1,0 +1,103 @@
+<!--pages/score/create/create.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view style="margin-top: {{height + 20}}px;">
+
+  <view style="margin: 10px; background-color: white; margin-top: 20px;">
+
+    <van-row gutter="20">
+      <van-col span="6">
+          <van-uploader
+            file-list="{{ themeImgShow }}"
+            max-count="1"
+            bind:after-read="afterRead"
+            bind:delete="delThemeImg"
+          />
+      </van-col>
+      <van-col span="15">
+        <van-cell-group>
+          <van-field
+            model:value="{{ themeName }}"
+            placeholder="请输入评分标题，不超过12个字"
+            border="{{ false }}"
+          />
+        </van-cell-group>
+      </van-col>
+        <van-col span="15">
+          <van-cell-group>
+            <van-field
+              model:value="{{ themeIn }}"
+              placeholder="输入简介，不超过30个字"
+              border="{{ false }}"
+              type="textarea"
+              autosize
+            />
+          </van-cell-group>
+      </van-col>
+    </van-row>
+
+
+  </view>
+
+<view style="background-color: rgba(255, 255, 255, 0.281); margin-bottom: 0px; margin-top: 20px;">
+  <text>评分对象</text>
+  <block wx:for="{{items}}" wx:key="index">
+      <view  style="margin: 30px; background-color: white;">
+      <van-row gutter="20" style="background-color: white;">
+        <van-col span="6">
+            <van-uploader
+              file-list="{{ itemImgShow[index] }}"
+              max-count="1"
+              bind:after-read="afterReadItem"
+              data-id="{{index}}"
+              bind:delete="delItemImg"
+            />
+        </van-col>
+        <van-col span="17">
+          <van-cell-group>
+            <van-field
+              model:value="{{ item.name }}"
+              placeholder="请输入对象名称，不超过12个字"
+              border="{{ false }}"
+              bind:change="inp_name"
+              data-id="{{index}}"
+              maxlength="12"
+            />
+          </van-cell-group>
+        </van-col>
+          <van-col span="17">
+            <van-cell-group>
+              <van-field
+                model:value="{{ item.intt }}"
+                placeholder="输入简介，不超过30个字"
+                border="{{ false }}"
+                type="textarea"
+                bind:change="inp_In"
+                autosize
+                data-id="{{index}}"
+                maxlength="30"
+              />
+            </van-cell-group>
+        </van-col>
+      </van-row>
+      </view>
+  </block>
+
+
+  <view style="margin-left: 20px; margin-right: 20px;">
+    <van-button block style="margin: 20px;" color="rgba(255, 255, 255, 0.281)" bind:tap="ZaiJia">再添加一个</van-button>
+    <van-button block style="margin: 20px;" color="rgba(255, 255, 255, 0.281)" bind:tap="sanChu">删除一个</van-button>
+  </view>
+
+  <text>至少添加一个对象，至多一次添加9个对象</text>
+
+
+  <view style="margin-left: 20px; margin-right: 20px; margin-top: 30px">
+    <van-button block style="margin: 20px;" bind:tap="tiJiao" hairline round  type="primary">提交</van-button>
+  </view>
+
+</view>
+
+
+
+</view>

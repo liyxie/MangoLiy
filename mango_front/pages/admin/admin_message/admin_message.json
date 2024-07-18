@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "mp-html": "/components/mp-html/index"
+  }
+}

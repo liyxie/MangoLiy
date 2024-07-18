@@ -1,0 +1,122 @@
+<!--pages/admin_driftBottle/admin_driftBottle.wxml-->
+
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view class='container' style='margin-top: {{height}}px'>
+
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input :adjust-position="false" type="text" placeholder="搜索漂流瓶" bindinput="in_value" bindconfirm="endsearchList" bindblur="blursearch" confirm-type="search"></input>
+    </view>
+    <view class="action">
+        <button class="cu-btn bg-green shadow-blur round" bind:tap="souSuo">搜索</button>
+        <!-- <button class="cu-btn bg-green shadow-blur round" bind:tap="toChuangJian">搜索</button> -->
+    </view>
+</view>
+
+<view class="main">
+ <view class="cu-list menu-avatar">
+<block wx:for="{{bottle}}" wx:key="index" >
+
+<!-- 文本 -->
+  <view class="cu-item " style="margin: 10px;" bind:tap="toggleDialog1" id="{{index}}" wx:if="{{item.type == 0}}">
+    <view class="cu-avatar radius lg" style="background-image:url(https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/wenben.svg);"></view>
+        <view class="content">
+          <view class="text-grey">
+            <view class="text-cut">{{item.title}}</view>
+            <view class="cu-tag round bg-orange sm">{{type[item.type]}}</view>
+          </view>
+            <view class="text-gray text-sm flex"> <view class="text-cut">{{item.content}}</view></view>
+        </view>
+        <view class="action">
+            <view class="text-grey text-xs">{{item.user.userNickname}}</view>
+        </view>
+    </view>
+<!-- 图片 -->
+<view class="cu-item " style="margin: 10px;" bind:tap="toggleDialog1" id="{{index}}"wx:if="{{item.type == 2}}">
+  <view class="cu-avatar radius lg" style="background-image:url({{item.content}});"></view>
+        <view class="content">
+          <view class="text-grey">
+            <view class="text-cut">{{item.title}}</view>
+            <view class="cu-tag round bg-orange sm">{{type[item.type]}}</view>
+          </view>
+            <!-- <view class="text-gray text-sm flex"> <view class="text-cut">{{item.content}}</view></view> -->
+        </view>
+        <view class="action">
+            <view class="text-grey text-xs">{{item.user.userNickname}}</view>
+        </view>
+    </view>
+<!-- 音乐 -->
+<view class="cu-item " style="margin: 10px;" bind:tap="toggleDialog1" id="{{index}}"wx:if="{{item.type == 1}}">
+  <view class="cu-avatar radius lg" style="background-image:url(https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/images/musicTu.png);"></view>
+        <view class="content">
+          <view class="text-grey">
+            <view class="text-cut">{{item.title}}</view>
+            <view class="cu-tag round bg-orange sm">{{type[item.type]}}</view>
+          </view>
+            <!-- <view class="text-gray text-sm flex"> <view class="text-cut">{{item.content}}</view></view> -->
+        </view>
+        <view class="action">
+            <view class="text-grey text-xs">{{item.user.userNickname}}</view>
+        </view>
+    </view>
+<!-- 视频 -->
+<view class="cu-item " style="margin: 10px;" bind:tap="toggleDialog1" id="{{index}}"wx:if="{{item.type == 4}}">
+  <view class="cu-avatar radius lg" style="background-image:url(https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/bofang.svg);"></view>
+        <view class="content">
+          <view class="text-grey">
+            <view class="text-cut">{{item.title}}</view>
+            <view class="cu-tag round bg-orange sm">{{type[item.type]}}</view>
+          </view>
+            <!-- <view class="text-gray text-sm flex"> <view class="text-cut">{{item.content}}</view></view> -->
+        </view>
+        <view class="action">
+            <view class="text-grey text-xs">{{item.user.userNickname}}</view>
+        </view>
+    </view>
+<!-- 文件 -->
+<view class="cu-item " style="margin: 10px;" bind:tap="toggleDialog1" id="{{index}}"wx:if="{{item.type == 3}}">
+  <view class="cu-avatar radius lg" style="background-image:url(https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/filePencil.svg);"></view>
+        <view class="content">
+          <view class="text-grey">
+            <view class="text-cut">{{item.title}}</view>
+            <view class="cu-tag round bg-orange sm">{{type[item.type]}}</view>
+          </view>
+            <!-- <view class="text-gray text-sm flex"> <view class="text-cut">{{item.content}}</view></view> -->
+        </view>
+        <view class="action">
+            <view class="text-grey text-xs">{{item.user.userNickname}}</view>
+        </view>
+    </view>
+
+</block>
+
+</view>
+
+
+</view>
+
+
+<view class="other" style="display:{{floorstatus}}">
+    <view class="return_top" bindtap='goTop'>
+      <image src="https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/images/other/top.png" class="goTop" style="font-size:100rpx;color:#3cc;" />
+    </view>
+  </view>
+
+
+
+</view>
+
+<view class="zan-dialog {{ showDialog1 ? 'zan-dialog--show' : '' }}">
+    <view class="zan-dialog__mask" data-id="{{currentIndex}}" bindtap="toggleDialog1" />
+    <view class="zan-dialog__container">
+      <view class="operation">
+        <button type="primary" class="submit" bindtap="to_look_detail">查看详情</button>
+        <!-- <button type="primary" class="submit" bindtap="toggleDialog2">修改帖子</button> -->
+        <button type="primary" class="submit" open-type="share">分享帖子</button>
+        <button type="warn" class="submit" bindtap="delete_message">删除帖子</button>
+      </view>
+    </view>
+  </view>
+  

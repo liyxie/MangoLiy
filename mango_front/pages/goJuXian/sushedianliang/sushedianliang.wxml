@@ -1,0 +1,48 @@
+<!--pages/goJuXian/sushedianliang/sushedianliang.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view style="margin-top: {{height*2+30}}px;"></view>
+
+<view class="cu-form-group">
+		<view class="title">学号</view>
+		<input placeholder="请输入学号" value="{{xuehao}}" bindinput="inXUehao"></input>
+	</view>
+
+<view class="cu-form-group margin-top">
+		<view class="title">宿舍楼</view>
+		<picker bindchange="louChange" value="{{index}}" range="{{lou}}" range-key="name">
+			<view class="picker">
+				{{louindex?lou[louindex].name:'.'}}
+			</view>
+		</picker>
+	</view>
+
+  <view class="cu-form-group margin-top">
+		<view class="title">楼层</view>
+		<picker bindchange="cenChange" value="{{index}}" range="{{cen}}"  range-key="name">
+			<view class="picker">
+				{{cenindex?cen[cenindex].name:'.'}}
+			</view>
+		</picker>
+	</view>
+
+  <view class="cu-form-group margin-top">
+		<view class="title">宿舍号</view>
+		<picker bindchange="haoChange" value="{{index}}" range="{{hao}}" range-key="name">
+			<view class="picker">
+				{{haoindex?hao[haoindex].name:'.'}}
+			</view>
+		</picker>
+	</view>
+
+<view class="padding flex flex-direction">
+  <button class="cu-btn bg-blue lg" bind:tap="jiasushe">查询</button>
+</view>
+
+<view class="cu-form-group margin-top">
+		<view class="title">房间</view>
+		<input placeholder="" value="{{dianlang.roomfullname}}" disabled="true"></input>
+	</view>
+  <view class="cu-form-group margin-top">
+		<view class="title">剩余电量</view>
+		<input placeholder="" value="{{dianlang.detaillist[0].odd}}kWh" disabled="true"></input>
+	</view>

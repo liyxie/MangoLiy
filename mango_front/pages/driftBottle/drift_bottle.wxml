@@ -1,0 +1,203 @@
+<!--pages/driftBottle/drift_bottle.wxml-->
+
+
+
+<view style="display:{{isLoading?'block':'none'}}">
+
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view class='home-page' style='padding-top: {{height*2+20}}px; height: 100%; width: 100%;'>
+
+<view class="bg-mask flex align-center" style="background-image: url('https://pic.52112.com/180424/180424_259/Rov1TLNoDO_small.jpg'); background-position: center; background-clip: border-box; background-repeat: no-repeat; background-size: contain; height: 750px; display:flex; justify-content:center;">
+
+<!-- 查看漂流瓶 -->
+<view class="padding-xl text-white" wx:if="{{showBottle}}">
+        <!-- 文本 -->
+        <block wx:if="{{bottle.type === '0'}}">
+          <view class="padding-xs text-xxl text-bold">
+              <mp-html content="{{title}}" selectable="true">加载中...</mp-html>
+          </view>
+          <view class="padding-xs text-lg">
+            <mp-html content="{{con}}" selectable="true">加载中...</mp-html>
+          </view>
+        </block>
+        <!-- 文件 -->
+        <block wx:if="{{bottle.type === '3'}}">
+          <view class="padding-xs text-xxl text-bold">
+              <mp-html content="{{title}}" selectable="true">加载中...</mp-html>
+          </view>
+          <view class="padding-xs text-lg">
+            <van-cell-group>
+              <van-cell title="{{title}}" label="点击查看" border="{{ false }}" bind:tap="seeFile"/>
+            </van-cell-group>
+          </view>
+        </block>
+        <!-- 音乐 -->
+        <block wx:if="{{bottle.type === '1'}}">
+          <view class="padding-xs text-xxl text-bold">
+            <mp-html content="{{title}}" selectable="true">加载中...</mp-html>
+          </view>
+          <view class="padding-xs text-xxl text-bold" style="background-color: rgba(130, 225, 228, 0.788);width: 400px;">   
+              <!-- <audio poster="/images/musicTu.png" name="{{title}}" author="未知" src="{{con}}" id="myAudio" controls loop></audio> -->
+
+              <view class="cu-list menu-avatar">
+                <view class="cu-item" style="background-color: #7ddee880;">
+                  <view class="cu-avatar round lg" style="background-image:url(https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/images/musicTu.png);"></view>
+                    <view class="content">
+                      <view class="text-grey">{{title}}</view>
+                        <view class="text-gray text-sm flex">
+                          <view class="text-cut">
+                            
+                          </view>
+                        </view>
+                      </view>
+                    <view class="action">
+                    <view class="text-grey text-xs">{{(forAllTime / 60 | 0) + ':' + (forAllTime % 60 < 10 ? '0' : '') + (forAllTime % 60)}}</view>
+                  </view>
+                </view>
+              </view>
+              <slider class="audio-slider" activeColor="#5189FF" block-size="12" value="{{current}}" max="{{duration}}" step="0.01" bindchanging="audioChanging" bindchange="audioChange" block-color="#5189FF" ></slider>
+          </view>
+          <view class="padding-xs text-lg" style="margin-top: 15px;">
+            <van-button hairline round  type="primary" size="large" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="audioPlay">播放</van-button>
+            <view style="min-height: 10px;"></view>
+            <van-button hairline round type="info" size="large" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="audioPause" style="margin-top: 15px;">暂停</van-button>
+            <!-- <button type="primary" bindtap="audioPlay">播放</button>
+            <button type="primary" bindtap="audioPause">暂停</button> -->
+          </view>
+        </block>
+        <!-- 图片 -->
+        <block wx:if="{{bottle.type === '2'}}">
+          <view class="padding-xs text-xxl text-bold">
+              <mp-html content="{{title}}" selectable="true">加载中...</mp-html>
+          </view>
+          <view class="padding-xs text-lg" style="display: flex;justify-content: center;">
+            <van-image
+              width="10rem"
+              height="10rem"
+              fit="contain"
+              src="{{con}}"
+              show-menu-by-longpress="true"
+            />
+          </view>
+        </block>
+        <!-- 视频 -->
+        <block wx:if="{{bottle.type === '4'}}">
+          <view class="padding-xs text-xxl text-bold" >
+              <mp-html content="{{title}}" selectable="true">加载中...</mp-html>
+          </view>
+          <view class="padding-xs text-lg" style="padding: 10px;">
+            <video 
+              id="myVideo" 
+              src="{{con}}" 
+              binderror="videoErrorCallback" 
+              show-center-play-btn='{{true}}' 
+              show-play-btn="{{true}}" 
+              controls
+              picture-in-picture-mode="{{['push', 'pop']}}"
+              bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+              bindleavepictureinpicture='bindVideoLeavePictureInPicture'
+            ></video>
+          </view>
+        </block>
+
+        <view class="padding-xs text-lg" style="padding: 50rpx;" wx:if="{{!idshow}}">
+         <button class="cu-btn round line-red shadow" bind:tap="closeBottle" style="top: 50%;left: 50%;transform: translate(-50%,-50%); width: 300px;">退出</button>
+        </view>
+
+</view>
+
+<block wx:if="{{!showBottle}}">
+<view class="cu-list menu sm-border card-menu" style="position: fixed; bottom: 400px;">
+          <view class="cu-item">
+        <button class="cu-btn content" bind:tap="getPiao">
+            <text class="cuIcon-btn text-olive"></text>
+            <text class="text-grey">获取漂流瓶</text>
+        </button>
+    </view>
+    </view>
+    <view class="cu-list menu sm-border card-menu" style="position: fixed; bottom: 300px;">
+    <view class="cu-item">
+        <button class="cu-btn content" bind:tap="setPiao">
+            <text class="cuIcon-btn text-olive"></text>
+            <text class="text-grey">抛出漂流瓶</text>
+        </button>
+    </view>
+        
+        </view>
+
+      </block>
+</view>
+
+</view>
+
+<!-- 底部弹窗 -->
+<van-action-sheet
+  show="{{ show }}"
+  actions="{{ actions }}"
+  bind:close="onClose"
+  bind:select="onSelect"
+  description="选择分享的类型"
+  round 
+/>
+
+<!-- 发送文字 -->
+<van-dialog
+  use-slot
+  title="漂流瓶"
+  show="{{ show1 }}"
+  show-cancel-button
+  confirm-button-open-type="getUserInfo"
+  bind:close="onClose1"
+  bind:confirm="sendText"
+  before-close='{{checkIsSucceed}}'
+>
+  <van-cell-group>
+    <van-field
+    model:value="{{ title }}"
+      label="标题"
+      type="textarea"
+      placeholder="请输入标题"
+      autosize
+      border="{{ false }}"
+    />
+  </van-cell-group>
+  <van-cell-group>
+    <van-field
+    model:value="{{ con }}"
+      label="内容"
+      type="textarea"
+      placeholder="请输入内容"
+      autosize
+      border="{{ false }}"
+    />
+  </van-cell-group>
+</van-dialog>
+
+<!-- 抛出文件 -->
+<van-dialog
+  use-slot
+  title="漂流瓶(只能选择微信文件)"
+  show="{{ show2 }}"
+  show-cancel-button
+  confirm-button-open-type="getUserInfo"
+  bind:close="onClose1"
+  bind:confirm="sendFlie"
+  before-close='{{checkIsSucceed}}'
+>
+<van-cell-group>
+    <van-field
+    model:value="{{ title }}"
+      label="标题"
+      type="textarea"
+      placeholder="请输入标题"
+      autosize
+      border="{{ false }}"
+    />
+  </van-cell-group>
+  <button  bind:tap="onUpload">{{FileName}}</button>
+</van-dialog>
+
+
+</view>
+

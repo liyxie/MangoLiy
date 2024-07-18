@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "mp-html": "/components/mp-html/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "van-rate": "@vant/weapp/rate/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-row": "@vant/weapp/row/index"
+  }
+}

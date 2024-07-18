@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work.liy.mango.mapper.MangoScoreItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="work.liy.mango.model.score.MangoScoreItemPo">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="introduction" property="introduction" />
+        <result column="is_del" property="isDel" />
+        <result column="img_url" property="imgUrl" />
+        <result column="create_time" property="createTime" />
+        <result column="create_id" property="createId" />
+        <result column="theme_id" property="themeId" />
+        <result column="num_people" property="numPeople" />
+        <result column="score" property="score" />
+        <result column="sum_score" property="sumScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, introduction, is_del, img_url, create_time, create_id, theme_id, num_people, score, sum_score
+    </sql>
+
+</mapper>

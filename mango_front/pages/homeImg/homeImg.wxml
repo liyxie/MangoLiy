@@ -1,0 +1,58 @@
+<!--pages/homeImg/homeImg.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='container' style='margin-top: {{height*2+20}}px'>
+  <view class="item" wx:for="{{imageList}}" wx:key="index">
+    <view class="item_id"><p class="text">P{{item.swiperId}}:</p></view>
+    <view class="item_img">
+    <image class="img" src="{{item.swiperImageUrl}}" mode="aspectFit" 	show-menu-by-longpress="true"></image>
+    <image class="edit-icon" data-id="{{item.swiperId}}" data-index="{{index}}" data-url="{{item.swiperImageUrl}}" bind:tap="change" src="https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/edit.svg"></image>
+    </view>
+  </view>
+
+
+
+
+</view>
+<van-uploader file-list="{{fileList}}" deletable="{{ true }}" wx:if="{{imgNum < 9}}" max-count="1"  bind:after-read="changeImg">
+  <van-button icon="photo" type="primary">上传图片</van-button>
+</van-uploader>
+
+
+<view class="zan-dialog {{ showDialog1 ? 'zan-dialog--show' : '' }}">
+    <view class="zan-dialog__mask" data-id="{{currentIndex}}" bindtap="change" />
+    <view class="zan-dialog__container">
+      <view class="operation">
+        <button type="primary" class="submit" bindtap="updataImg">更换图片</button>
+        <button type="primary" class="submit" bindtap="change_img" data-id="{{swiperId}}">设置链接</button>
+        <button type="warn" class="submit" bindtap="delete_img">删除图片</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-modal bottom-modal show" wx:if="{{shezhilianjei}}">
+<view class="cu-dialog" style="background-color: white;">
+  <view class="cu-bar bg-white">
+    <view class="action text-green" bind:tap="addlianjie">确定</view>
+    <view class="action text-red">设置点击链接</view>
+    <view class="action text-blue" bind:tap="quXiaoAdd">取消</view>
+  </view>
+  <!-- 违禁词 -->
+<view style="padding-top: 10rpx;padding-bottom: 30rpx;" data-id="{{item.id}}">
+    <view class="cu-bar search bg-white" style="margin-bottom: 30px;">
+      <view class="search-form">
+        <input blur="InputBlur" bindinput="InputUrl" type="text"  value="{{imageList[tuIndex].url}}" placeholder="输入帖子id"></input>
+      </view>
+      <view class="action">
+        <button class="cu-btn bg-green shadow-blur round" bind:tap="addlianjie">修改</button>
+      </view>
+    </view>
+    <view style="color: gray;">
+        <text>输入帖子id为对应跳转的帖子位置，为空时不设置跳转</text>
+        <view/>
+        <text>帖子id请于校园墙管理处查看</text>
+      </view>
+  </view>
+
+  
+</view>
+</view>

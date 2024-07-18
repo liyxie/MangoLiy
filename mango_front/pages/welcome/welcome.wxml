@@ -1,0 +1,15 @@
+<view class='bg'>
+  <image src='https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/images/other/index.jpeg' class='full' mode="aspectFill"></image>
+  <view class="myButton" bindtap="next" style="display:{{isLoad==1?'':'none'}}">{{time}}   跳过</view>
+</view>
+<view class="bottom">
+  <view class="main">
+    <view class="logo">
+      <image src="https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/images/other/logo.png" mode="widthFix" />
+    </view>
+    <view class="detail">
+      <view class="title">仲园学生社区</view>
+      <view class="intro">方便你的生活</view>
+    </view>
+  </view>
+</view>

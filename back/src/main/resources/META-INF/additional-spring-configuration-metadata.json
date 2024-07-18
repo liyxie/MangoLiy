@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "excel.file.ctiyPath",
+      "type": "java.lang.String",
+      "description": "Description for excel.file.ctiyPath."
+  }
+] }

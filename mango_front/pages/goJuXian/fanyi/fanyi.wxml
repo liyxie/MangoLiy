@@ -1,0 +1,37 @@
+<!--pages/goJuXian/fanyi/fanyi.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view style="margin-top: {{height*2+20}}px;"></view>
+
+<view class="cu-form-group align-start">
+		<view class="title">翻译文字</view>
+		<textarea maxlength="-1" bindinput="textareaBInput" placeholder="文本输入" value="{{input}}"></textarea>
+	</view>
+
+	<view class="cu-form-group margin-top">
+		<view class="title">源语言</view>
+		<picker bindchange="yuanChange" value="{{yuanindex}}" range="{{pok}}" range-key="name">
+			<view class="picker">
+				{{yuanindex?pok[yuanindex].name:'.'}}
+			</view>
+		</picker>
+	</view>
+
+  <view class="cu-form-group margin-top">
+		<view class="title">目标语言</view>
+		<picker bindchange="muChange" value="{{muindex}}" range="{{pok}}" range-key="name">
+			<view class="picker">
+				{{muindex?pok[muindex].name:'.'}}
+			</view>
+		</picker>
+	</view>
+
+  <view class="padding flex flex-direction">
+  <button class="cu-btn bg-blue lg" bind:tap="fyi">翻译</button>
+</view>
+
+
+
+  <view class="cu-form-group align-start">
+		<view class="title">翻译</view>
+		<textarea maxlength="-1" placeholder="文本输入" value="{{fy}}"></textarea>
+	</view>

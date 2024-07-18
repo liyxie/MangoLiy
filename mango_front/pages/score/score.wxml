@@ -1,0 +1,71 @@
+<!--pages/score/score.wxml-->
+
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view style="margin-top: {{height}}px;">
+
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input focus="InputFocus" blur="InputBlur" :adjust-position="false" type="text" placeholder="搜索评分" bindinput="in_value" bindconfirm="endsearchList" bindblur="blursearch" confirm-type="search"></input>
+    </view>
+    <view class="action">
+        <!-- <button class="cu-btn bg-green shadow-blur round" bind:tap="souSuo">搜索</button> -->
+        <button class="cu-btn bg-green shadow-blur round" bind:tap="toChuangJian">创建评分</button>
+    </view>
+</view>
+
+<!-- 推荐 -->
+
+
+<!-- 最新 -->
+<view style="margin-top: 10px;">
+  <block wx:for="{{themesNew}}" wx:key="index">
+    <view class="back" bindtap="to_theme" id="{{item.id}}" style="background-color: #ffffff00;">
+      
+      <view class="cu-list menu-avatar" style="background-color: #39d1e47a;border-radius: 15px;">
+        <view class="cu-item " style="background-color: rgba(255, 255, 255, 0);">
+            <view class="cu-avatar radius lg" style="background-image:url({{item.imgUrl}});"></view>
+            <view class="content">
+                <view class="text-cut">{{item.name}}</view>
+                <view class="text-gray text-sm flex"> <view class="text-cut">{{item.introduction}}</view></view>
+            </view>
+            <view class="action">
+                <view class="text-grey text-xs">评分人数</view>
+                <view class="cu-tag sm" style="color: #718d96; background-color: #ffffff00;">{{item.sum}}</view>
+            </view>
+            <view class="action">
+                <view class="cuIcon-forward"></view>
+            </view>
+        </view>
+        <block wx:for="{{item.list}}" wx:key="inedx2">
+          <view class="cu-item " style="margin-left: 20px; background-color: #fbfbfb6b;margin-right: 5px; border-radius: 10rpx;">
+              <view class="cu-avatar radius" style="background-image:url({{item.imgUrl}});"></view>
+              <view class="content">
+                  <view class="text-cut">{{item.name}}</view>
+                  <view class="text-gray text-sm flex"> <view class="text-cut">{{item.introduction}}！</view></view>
+              </view>
+              <view class="action">
+                  <!-- <view class="text-grey text-xs">22:20</view>
+                  <view class="cu-tag round bg-red sm">5</view> -->
+                    <view>{{item.score*2}} 分</view>
+              </view>
+          </view>
+
+          <view class="hr"> </view>
+
+        </block>
+
+
+      </view>
+    
+    
+    
+    </view>
+  
+  </block>
+
+
+</view>
+
+</view>

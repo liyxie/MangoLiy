@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work.liy.mango.mapper.MangoScoreUiMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="work.liy.mango.model.score.MangoScoreUiPo">
+        <id column="id" property="id" />
+        <result column="item_id" property="itemId" />
+        <result column="user_id" property="userId" />
+        <result column="theme_id" property="themeId" />
+        <result column="score" property="score" />
+        <result column="comment" property="comment" />
+        <result column="like_num" property="likeNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, item_id, user_id, score, theme_id, comment, like_num
+    </sql>
+
+</mapper>

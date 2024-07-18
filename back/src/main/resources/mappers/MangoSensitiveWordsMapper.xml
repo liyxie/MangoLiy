@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work.liy.mango.mapper.MangoSensitiveWordsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="work.liy.mango.model.MangoSensitiveWordsPo">
+        <id column="id" property="id" />
+        <result column="word" property="word" />
+        <result column="is_del" property="isDel" />
+        <result column="is_use" property="isUse" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, word, is_del, is_use
+    </sql>
+
+</mapper>

@@ -1,0 +1,104 @@
+<!--pages/score/themem/themem.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view style="margin-top: {{height+10}}px;">
+
+  <view class="cu-list menu-avatar">
+    <view class="cu-item" style="height: 240rpx;background-color: #ffffff7d;">
+      <view class="cu-avatar radius lg" style="background-image:url({{theme.imgUrl}});width: 168rpx;height: 168rpx;" bind:tap="seeImg" data-src="{{theme.imgUrl}}"></view>
+      <view class="content" style="left: 220rpx;line-height: 2.6em;">
+        <view>
+          <view class="text-cut">{{theme.name}}</view>
+          <!-- <view class="cu-tag round bg-orange sm">断开连接...</view> -->
+        </view>
+        <view class="text-gray text-sm flex">
+          <view class="text-cut"> {{theme.introduction}}</view>
+        </view>
+      </view>
+      <view class="action">
+        <view class="text-grey text-xs">总评分人数{{theme.sum}}</view>
+        <view class="text-grey text-xs">由{{create.userNickname}}创建</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-list menu-avatar">
+
+    <block wx:for="{{theme.list}}" wx:key="index">
+
+      <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" style="margin-top: 10px;" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+        <view class="cu-avatar radius lg" style="background-image:url({{item.imgUrl}});"bind:tap="seeImg" data-src="{{item.imgUrl}}"></view>
+        <view class="content">
+          <view>
+            <view class="text-cut">{{item.name}}</view>
+            <!-- <view class="cu-tag round bg-orange sm">断开连接...</view> -->
+          </view>
+          <view class="text-gray text-sm flex">
+            <view class="text-cut">{{item.introduction}}</view>
+          </view>
+        </view>
+        <van-rate value="{{ item.myScore }}" allow-half void-icon="star" void-color="#eee" bind:change="onChange" data-id="{{item.id}}" />
+        <view class="action">
+          <view class="text-grey text-xs">{{item.numPeople}}人评分</view>
+          <view class="text-grey text-xs" style="font-size: 50rpx;">{{item.score*2}}</view>
+        </view>
+        <view class="move">
+          <view class="bg-red" bind:tap="deleteItem" data-id="{{item.id}}">删除</view>
+        </view>
+      </view>
+       <!-- <view style="font-size: 50rpx; background-color: white;padding-left: 20px;">{{item.score}}</view> -->
+    </block>
+
+  </view>
+
+  <view class="cu-bar bg-white foot" style="justify-content: center;">
+    <view bind:tap="changShow">再添加一个对象</view>
+  </view>
+</view>
+
+<view class="cu-modal bottom-modal show" wx:if="{{show}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white">
+			<view class="action text-green" bind:tap="tiJiao">确定</view>
+			<view class="action text-blue" bind:tap="changShowFalse">取消</view>
+		</view>
+		<view class="padding-xl" style="padding: 25rpx;margin-bottom: 50px;">
+      <view  style="margin: 30px; background-color: white;">
+      <van-row gutter="20" style="background-color: white;">
+        <van-col span="6">
+            <van-uploader
+              file-list="{{itemImgShow}}"
+              max-count="1"
+              bind:after-read="afterReadItem"
+              bind:delete="delItemImg"
+            />
+        </van-col>
+        <van-col span="17">
+          <van-cell-group>
+            <van-field
+              model:value="{{ item[0].name }}"
+              placeholder="请输入对象名称，不超过12个字"
+              border="{{ false }}"
+              bind:change="inp_name"
+              maxlength="12"
+            />
+          </van-cell-group>
+        </van-col>
+          <van-col span="17">
+            <van-cell-group>
+              <van-field
+                model:value="{{ item[0].intt }}"
+                placeholder="输入简介，不超过30个字"
+                border="{{ false }}"
+                type="textarea"
+                bind:change="inp_In"
+                autosize
+                maxlength="30"
+              />
+            </van-cell-group>
+        </van-col>
+      </van-row>
+      </view>
+		</view>
+	</view>
+</view>

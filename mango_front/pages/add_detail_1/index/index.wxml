@@ -1,0 +1,234 @@
+<!-- <import src="../common/head.wxml" />
+<import src="../common/foot.wxml" /> -->
+
+  <!-- <navbar title="发布-{{theme_id=='-1'?'日常':themeMessage[theme_id-1].themeTitle}}" loading="{{true}}" home="{{true}}" back="{{true}}"></navbar> -->
+  <nav-bar navbar-data='{{nvabarData}}' ></nav-bar>
+
+<!-- <view class="bottom_item" style="margin-top: {{height*2+30}}px;">
+  <view class="message_category">
+    <view class="phone_title">请选择分类：</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+      <view class="phone">
+        {{picker[index]}}
+      </view>
+    </picker>
+  </view>
+</view> -->
+
+
+<form bindsubmit="formSubmit">
+
+  <!-- <view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        国家：{{objectArray[index].name}}
+      </view>
+    </picker>
+  </view> -->
+  <!-- <view>
+    <input name="title" class="title" placeholder="请输入文章标题"></input>
+  </view> -->
+  <view class="container">
+
+    <view class="bottom_item" style="margin-top: {{height*2+30}}px;background-color: #00bcd480;">
+  <view class="message_category">
+    <view class="phone_title">请选择分类：</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+      <view class="phone">
+        {{picker[index]}}
+      </view>
+    </picker>
+  </view>
+</view>
+
+    <!-- <template is="head" data="{{title: 'editor'}}"/> -->
+    <view class="page-body">
+      <view class='wrapper'>
+      <!-- 富文本编辑 -->
+        <view class='toolbar' bindtap="format">
+          <view>
+            <i class="iconfont icon-zitijiacu {{formats.bold ? 'ql-active' : ''}}" data-name="bold"></i>
+            <i class="iconfont icon-zitixieti {{formats.italic ? 'ql-active' : ''}}" data-name="italic"></i>
+            <i class="iconfont icon-zitixiahuaxian {{formats.underline ? 'ql-active' : ''}}" data-name="underline"></i>
+            <i class="iconfont icon-zitishanchuxian {{formats.strike ? 'ql-active' : ''}}" data-name="strike"></i>
+            <i class="iconfont icon-zuoduiqi {{formats.align === 'left' ? 'ql-active' : ''}}" data-name="align" data-value="left"></i>
+            <i class="iconfont icon-juzhongduiqi {{formats.align === 'center' ? 'ql-active' : ''}}" data-name="align" data-value="center"></i>
+            <i class="iconfont icon-youduiqi {{formats.align === 'right' ? 'ql-active' : ''}}" data-name="align" data-value="right"></i>
+            <i class="iconfont icon-zuoyouduiqi {{formats.align === 'justify' ? 'ql-active' : ''}}" data-name="align" data-value="justify"></i>
+          </view>
+          <view>
+            <i class="iconfont icon-line-height {{formats.lineHeight ? 'ql-active' : ''}}" data-name="lineHeight" data-value="2"></i>
+            <i class="iconfont icon-Character-Spacing {{formats.letterSpacing ? 'ql-active' : ''}}" data-name="letterSpacing" data-value="2em"></i>
+            <i class="iconfont icon-722bianjiqi_duanqianju {{formats.marginTop ? 'ql-active' : ''}}" data-name="marginTop" data-value="20px"></i>
+            <i class="iconfont icon-723bianjiqi_duanhouju {{formats.micon-previewarginBottom ? 'ql-active' : ''}}" data-name="marginBottom" data-value="20px"></i>
+            <i class="iconfont icon-clearedformat" bindtap="removeFormat"></i>
+            <i class="iconfont icon-font {{formats.fontFamily ? 'ql-active' : ''}}" data-name="fontFamily" data-value="Pacifico"></i>
+            <i class="iconfont icon-fontsize {{formats.fontSize === '24px' ? 'ql-active' : ''}}" data-name="fontSize" data-value="24px"></i>
+            <i class="iconfont icon-text_color {{formats.color === '#0000ff' ? 'ql-active' : ''}}" data-name="color" data-value="#0000ff"></i>
+          </view>
+          <view>
+            <i class="iconfont icon-fontbgcolor {{formats.backgroundColor === '#00ff00' ? 'ql-active' : ''}}" data-name="backgroundColor" data-value="#00ff00"></i>
+            <i class="iconfont icon-date" bindtap="insertDate"></i>
+            <i class="iconfont icon--checklist" data-name="list" data-value="check"></i>
+            <i class="iconfont icon-youxupailie {{formats.list === 'ordered' ? 'ql-active' : ''}}" data-name="list" data-value="ordered"></i>
+            <i class="iconfont icon-wuxupailie {{formats.list === 'bullet' ? 'ql-active' : ''}}" data-name="list" data-value="bullet"></i>
+            <i class="iconfont icon-undo" bindtap="undo"></i>
+            <i class="iconfont icon-redo" bindtap="redo"></i>
+            <i class="iconfont icon-outdent" data-name="indent" data-value="-1"></i>
+          </view>
+          <view>
+            <!-- <i class="iconfont icon-indent" data-name="indent" data-value="+1"></i> -->
+            <i class="iconfont icon-indent {{formats.textIndent ? 'ql-active' : ''}}" data-name="textIndent" data-value="2em"></i>
+            <i class="iconfont icon-fengexian" bindtap="insertDivider"></i>
+            <i class="iconfont icon-charutupian" bindtap="insertImage"></i>
+            <i class="iconfont icon-format-header-1 {{formats.header === 1 ? 'ql-active' : ''}}" data-name="header" data-value="{{1}}"></i>
+            <i class="iconfont icon-zitixiabiao {{formats.script === 'sub' ? 'ql-active' : ''}}" data-name="script" data-value="sub"></i>
+            <i class="iconfont icon-zitishangbiao {{formats.script === 'super' ? 'ql-active' : ''}}" data-name="script" data-value="super"></i>
+            <i class="iconfont icon-shanchu" bindtap="clear"></i>
+            <i class="iconfont icon-direction-rtl {{formats.direction === 'rtl' ? 'ql-active' : ''}}" data-name="direction" data-value="rtl"></i>
+          </view>
+        </view>
+        <!-- 内容 -->
+        <scroll-view scroll-y="{{true}}" style="height: 600rpx;width:100%;  margin-bottom: 10px;">
+          <editor id="editor" class="ql-container" placeholder="{{placeholder}}" bindinput="input" showImgSize showImgToolbar showImgResize bindstatuschange="onStatusChange" read-only="{{readOnly}}" bindready="onEditorReady"></editor>
+        </scroll-view>
+
+<!-- 失物招领 -->
+<block wx:if="{{index == 1}}">
+        <van-cell-group style=" margin-bottom: 10px;">
+          <van-field
+          label="地点:"
+          model:value="{{ input_loca }}"
+          placeholder="请输入失物地点"
+            border="{{ false }}"
+          />
+        </van-cell-group>
+<view style=" margin-bottom: 10px;"></view>
+        <van-cell-group style=" margin-bottom: 10px;">
+          <van-field
+          label="时间:"
+          model:value="{{ input_time }}"
+            placeholder="丢失或拾遗时间"
+            border="{{ false }}"
+          />
+        </van-cell-group>
+<view style=" margin-bottom: 10px;"></view>
+        <van-cell-group style="font-size: 30rpx;">
+          <van-field
+          model:value="{{ input_phone }}"
+            label="联系方式："
+            placeholder="请输入手机号"
+            border="{{ false }}"
+            error="{{ phoneLength || phoneFormat }}"
+            error-message="{{ phoneError }}"
+            bindinput='input_phone'
+            class="my1"
+            style="font-size: 30rpx; color: #000000;  margin-bottom: 10px;"
+          />
+        </van-cell-group>
+      </block>
+
+<!-- 限制交易 -->
+      <block wx:if="{{index == 2}}">
+        <van-cell-group style=" margin-bottom: 10px;">
+          <van-field
+          label="价格:"
+          model:value="{{ input_num }}"
+            placeholder="请输入价格"
+            border="{{ false }}"
+          />
+        </van-cell-group>
+<view style=" margin-bottom: 10px;"></view>
+        <van-cell-group style=" margin-bottom: 10px;">
+          <van-field
+          label="商品名:"
+          model:value="{{ input_name }}"
+            placeholder="请输入商品名"
+            border="{{ false }}"
+          />
+        </van-cell-group>
+<view style=" margin-bottom: 10px;"></view>
+        <van-cell-group style="font-size: 30rpx;">
+          <van-field
+          model:value="{{ input_phone }}"
+            label="联系方式："
+            placeholder="请输入手机号"
+            border="{{ false }}"
+            error="{{ phoneLength || phoneFormat }}"
+            error-message="{{ phoneError }}"
+            bindinput='input_phone'
+            class="my1"
+            style="font-size: 30rpx; color: #000000;  margin-bottom: 10px;"
+          />
+        </van-cell-group>
+      </block>
+
+<!-- 校园求助 -->
+      <block wx:if="{{index == 3}}">
+        <van-cell-group style=" margin-bottom: 10px;">
+          <van-field
+          label="时效性:"
+          model:value="{{ input_time }}"
+            placeholder="求助最大有效期"
+            border="{{ false }}"
+          />
+        </van-cell-group>
+<view style=" margin-bottom: 10px;"></view>
+        <van-cell-group style="font-size: 30rpx;">
+          <van-field
+          model:value="{{ input_phone }}"
+            label="联系方式："
+            placeholder="请输入手机号"
+            border="{{ false }}"
+            error="{{ phoneLength || phoneFormat }}"
+            error-message="{{ phoneError }}"
+            bindinput='input_phone'
+            class="my1"
+            style="font-size: 30rpx; color: #000000;  margin-bottom: 10px;"
+          />
+        </van-cell-group>
+      </block>
+
+      <!-- 兼职代事 -->
+      <block wx:if="{{index == 4}}">
+        <van-cell-group style=" margin-bottom: 10px;">
+          <van-field
+          label="时效性:"
+          model:value="{{ input_time }}"
+            placeholder="该帖最大有效期"
+            border="{{ false }}"
+          />
+        </van-cell-group>
+<view style=" margin-bottom: 10px;"></view>
+        <van-cell-group style="font-size: 30rpx;">
+          <van-field
+          model:value="{{ input_phone }}"
+            label="联系方式："
+            placeholder="请输入手机号"
+            border="{{ false }}"
+            error="{{ phoneLength || phoneFormat }}"
+            error-message="{{ phoneError }}"
+            bindinput='input_phone'
+            class="my1"
+            style="font-size: 30rpx; color: #000000;  margin-bottom: 10px;"
+          />
+        </van-cell-group>
+      </block>
+
+
+
+        <!-- 操作 -->
+        <view class="submit">
+          <button class="button" formType="submit" style="background-color: #75b7eaa1">保存</button>
+          <button class="button" bindtap="priview" style="background-color: #50b554a8;">预览</button>
+        </view>
+        <!-- 录音 -->
+        <view>
+          <view class="tip"  bindtap="speechStart" hidden="{{speech}}" ><image src="https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/images/speech.png" ></image></view>
+                 <view class="tip" bindtap="stopRecord" hidden="{{!speech}}"><image src="https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/images/speech_active.png" ></image>
+                 <view style="color:red;font-size:20rpx">正在录音,点击关闭</view></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</form>

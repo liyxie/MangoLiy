@@ -1,0 +1,15 @@
+/* pages/score/score.wxss */
+
+.back {
+  background-color: rgba(255, 255, 255, 0);
+  margin: 10px;
+}
+
+/* 分隔线 */
+.hr {
+  width: 90%;
+  height: 3rpx;
+  margin-top: 15rpx;
+  margin-left: 37.5rpx;
+  background-color: #dfdedd;
+}

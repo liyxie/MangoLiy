@@ -1,0 +1,120 @@
+<!-- 组件模板 -->
+
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='home-page' style='margin-top: {{height*2+20}}px'>
+
+<view style="background-color: white;">
+  <search id="SearchBar" addflag="{{false}}" bind:addhandle="addhandle" searchstr="{{searchstr}}" bind:searchList="searchList" bind:endsearchList="endsearchList" bind:cancelsearch="cancelsearch" bind:activity_clear="activity_clear" style="background-color: white;"></search>
+
+  <view style="margin-top: {{height/2}}px; background-color: white;"></view>
+  
+</view>
+   <view >
+
+    <block wx:for="{{user_message}}" wx:key="index">
+      <!-- 日常 -->
+      <view class="back" bindtap="to_message_detail" id="{{item.messageId}}" style="border-radius: 10px;">
+          <view class="main_item">
+          <!-- 作者信息 -->
+            <view class="user_message">
+              <view class="user_image">
+                <image src="{{item.userIdAnonymity==0?item.mangoUser.userAvatar:'https://liy1900-1258789570.cos.ap-guangzhou.myqcloud.com/www/wwwroot/liy/images/other/hidden.jpg'}}" style="width:80rpx;height:80rpx;border-radius:50%"/>
+              </view>
+              <view class="user_detail">
+                <view class="user_name">
+                  <text>{{item.userIdAnonymity==0?item.mangoUser.userNickname:"匿名用户"}}</text>
+                </view>
+                <!-- 标签 -->
+                  <view class="user_flag">
+                    <view class="flag_category">{{allCategoryMessage[item.categoryId-1].categoryName}}</view>                  
+                  <block wx:if="{{item.userIdAnonymity == 0}}">
+                    <view class="flag_sex">{{item.mangoUser.userGender==1?"男":"女"}}</view>
+                    <view class="flag_major">{{item.userMajor}}</view>
+                    <view class="flag_age">{{item.userLevel}}</view>
+                  </block>
+                    <view class="flag_phone_yes">{{picker[item.categoryId-1]}}</view>
+                  </view>
+              
+              </view>
+            </view>
+          </view>
+          <view class="body">
+            <view class="content" style="overflow: hidden;max-height: 150px;">
+              <mp-html content="{{item.messageDetail}}"></mp-html>
+            </view>
+          </view>
+          <view class="main_bottom">
+            <view class="main_bottom_operation">
+              <view class="main_bottom_operation_left">
+                <view>
+                  <text class="iconfont icon-zhuanfa" style="margin-left:20rpx;color:#999;font-size:25rpx;">{{item.messageShare}}</text>
+                  <text class="iconfont icon-iconfontpinglun" style="margin-left:50rpx;color:#999;font-size:25rpx;">{{item.messageComment}}</text>
+                </view>
+              </view>
+              <view class="main_bottom_operation_right">
+                <text class="iconfont icon-dianzan" style="margin-right:20rpx;color:#999;font-size:25rpx;">{{item.messageWatch}}</text>
+              </view>
+            </view>
+          </view>
+      </view>
+
+      </block>
+
+    <!-- <block wx:for="{{user_message}}" wx:key="index">
+      <view class="back" bindtap="to_message_detail" id="{{item.messageId}}">
+        <view class="main_item">
+          <view class="user_message">
+            <view class="user_image">
+              <image src="{{item.userIdAnonymity==0?messageDetail.mangoUser.userAvatar:'../../images/other/hidden.jpg'}}"style="width:80rpx;height:80rpx;border-radius:50%" />
+            </view>
+            <view class="user_detail">
+              <view class="user_name">
+                <text>{{item.mangoUser.userIdAnonymity==0?item.mangoUser.userNickname:"匿名用户"}}</text>
+              </view>
+              <view class="user_flag">
+                <view class="flag_category">{{allCategoryMessage[item.categoryId-1].categoryName}}</view>
+                <block wx:if="{{item.mangoUser.userIdAnonymity == 0}}">
+                <view class="flag_sex">{{item.mangoUser.userGender==1?"男":"女"}}</view>
+                <view class="flag_major">{{item.userMajor}}</view>
+                <view class="flag_age">{{item.userLevel}}</view>
+              </block>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="main_middle">
+          <view class="main_middle_intro">
+            <text>{{item.messageDetail}}</text>
+          </view>
+          <view class="main_middle_image {{item.messageImages.length==1?'change_one':item.messageImages.length==2?'change_second':''}}">
+            <block wx:for="{{item.messageImages}}" wx:key="index">
+              <image src="{{imageUrl}}{{item.imageUrl}}" mode="aspectFill" />
+            </block>
+          </view>
+        </view>
+        <view class="main_bottom">
+          <view class="main_bottom_operation">
+            <view class="main_bottom_operation_left">
+              <view>
+                <text class="iconfont icon-zhuanfa" style="margin-left:20rpx;color:#999;font-size:25rpx;">{{item.messageShare}}</text>
+                <text class="iconfont icon-iconfontpinglun" style="margin-left:50rpx;color:#999;font-size:25rpx;">{{item.messageComment}}</text>
+              </view>
+            </view>
+            <view class="main_bottom_operation_right">
+              <text class="iconfont icon-dianzan" style="margin-right:20rpx;color:#999;font-size:25rpx;">{{item.messageWatch}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block> -->
+
+
+  </view>
+
+  <view class="end" style="text-align:center;color:#999;font-size:25rpx;margin:10rpx;margin-top:20rpx;display:{{isLastPage?'':'none'}}">
+    ————————— End —————————
+  </view>
+  <view class="end" style="text-align:center;color:#999;font-size:25rpx;margin:10rpx;margin-top:20rpx;display:{{user_message.length==0?'':'none'}}">
+    ————————— End —————————
+  </view>
+</view>
