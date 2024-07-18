@@ -1,10 +1,13 @@
 # 微信小程序
 
-根据
+基于
 
+[hou6663/MangoSD: SpringBoot+微信小程序开发的校园社交论坛 (github.com)](https://github.com/hou6663/MangoSD)
 
+二次开发而来，建议先看原项目README一遍
 
-使用技术
+## 使用技术
+
 1.前端：
 
   原生小程序开发
@@ -21,7 +24,7 @@ WebSocket
 
 腾讯cos
 
-### 程序本身的一些功能
+## 程序功能
 1. 校园墙（发帖、评论等）
 
 2. 漂流瓶（发东西，随机收东西）
@@ -35,7 +38,7 @@ WebSocket
 3. 电量查询（抓包自己学校弄得，其他人用不到）
 4. 翻译（直接调微信API的）
 
-特点：
+### 特点：
 
 1. 管理员可控制轮播图、轮播图跳转
 2. DFA过滤违禁词，可自定义违禁词
@@ -67,9 +70,17 @@ WebSocket
 
 小程序改url和wsurl为线上ip与端口
 
-后端用docker，本地package拿到jar包，和Dockerfile文件一起上传服务器同目录，，
+后端用docker，本地package拿到jar包，和Dockerfile文件一起上传服务器同目录
 
-以下为原项目运行
+```shell
+docker build -t mango .
+```
+
+```shell
+docker run -p 8081:8081 -d mango
+```
+
+## 以下为原项目的线上运行步骤
 
  ### 我的后台是idea直接打包为jar让宝塔直接运行的。
  ### 前台
